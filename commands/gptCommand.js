@@ -16,10 +16,12 @@ async function gptCommand(message, openai, splitMessage) {
     if (requestetVariation in gptVariations) {
       variation = requestetVariation
     }
-
-    prompt = message.content.indexOf()
+    splitMessage.splice(0, 2)
+  } else {
+    splitMessage.splice(0, 1)
   }
 
+  const prompt = splitMessage.join(' ')
   const bias = gptVariations[variation]
 
   const { content: messageToSend } = await gptChatCompletion(openai, bias, prompt)
@@ -30,3 +32,8 @@ async function gptCommand(message, openai, splitMessage) {
 }
 
 export { gptCommand }
+
+/**
+ * TODO:
+ * Find a better way to handle the parameters
+ */
