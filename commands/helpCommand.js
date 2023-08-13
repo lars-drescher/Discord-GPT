@@ -1,0 +1,3 @@
+function helpCommand() {}
+
+export { helpCommand };
