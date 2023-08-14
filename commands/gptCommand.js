@@ -1,5 +1,6 @@
 import { gptVariations } from '../constances/gptVariations.js'
 import { gptChatCompletion } from '../helpers/gptHelper.js'
+import { helpCommand } from './helpCommand.js'
 
 /**
  * GPT Command
@@ -8,6 +9,11 @@ async function gptCommand(message, openai, splitMessage) {
   let variation = 'normal'
 
   const parameter = splitMessage[1]
+
+  if (parameter === 'help') {
+    helpCommand(message)
+    return
+  }
 
   // Checks if the gpt command has a parameter
   if (parameter.startsWith('-')) {
